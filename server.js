@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 const userRoutes = require("./routes/userRoutes");
 const txnRoutes = require("./routes/txnRoutes");
-
+const otpRoutes = require("./routes/otpRoutes");
 const app = express();
 
 // ✅ Universal CORS Setup (Compatible with Express 5)
@@ -34,6 +34,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(express.json());
 
+
 // ✅ MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
@@ -43,6 +44,7 @@ mongoose
 // ✅ Routes
 app.use("/api/users", userRoutes);
 app.use("/api/txns", txnRoutes);
+app.use("/api/otp", otpRoutes);
 
 // ✅ Default route
 app.get("/", (req, res) => {
