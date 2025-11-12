@@ -13,7 +13,7 @@ router.post("/send", async (req, res) => {
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
     // Save in DB
-    await Otp.create({ phone, otp, expiresAt });
+    await Otp.create({ phone, code : otp, expiresAt });
 
     // Send OTP using Textbelt (from backend — no CORS issue)
     const smsRes = await axios.post("https://textbelt.com/text", {
